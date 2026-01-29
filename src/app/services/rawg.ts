@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { RawgGamesResponse } from '../models/rawg';
+import { RawgGameDetailResponse, RawgGamesResponse } from '../models/rawg';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -11,5 +11,9 @@ export class RawgService {
 
   games() {
     return this.http.get<RawgGamesResponse>(`https://api.rawg.io/api/games?key=${environment.RAWG_API_KEY}`);
+  }
+
+  gameById(id: string) {
+    return this.http.get<RawgGameDetailResponse>(`https://api.rawg.io/api/games/${id}?key=${environment.RAWG_API_KEY}`);
   }
 }
